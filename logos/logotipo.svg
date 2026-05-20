@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="290"
+   height="70"
+   viewBox="5 60 290 70"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="probando2.svg"
+   inkscape:export-filename="..\Branding\probando2.pdf"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.59185"
+     inkscape:cx="292.30379"
+     inkscape:cy="313.42401"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient5"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#be4cad;stop-opacity:1;"
+         offset="0.0432526"
+         id="stop5" />
+      <stop
+         style="stop-color:#559ef8;stop-opacity:1;"
+         offset="0.93598616"
+         id="stop6" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#c149ab;stop-opacity:1;"
+         offset="0.03114187"
+         id="stop3" />
+      <stop
+         style="stop-color:#539ff9;stop-opacity:1;"
+         offset="0.94982702"
+         id="stop4" />
+    </linearGradient>
+    <rect
+       x="198.5409"
+       y="251.99422"
+       width="868.99823"
+       height="392.50008"
+       id="rect3" />
+    <rect
+       x="213.81327"
+       y="198.5409"
+       width="688.78419"
+       height="368.06428"
+       id="rect2" />
+    <rect
+       x="157.30548"
+       y="178.68681"
+       width="821.65386"
+       height="406.24522"
+       id="rect1" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3"
+       id="linearGradient4"
+       x1="209.20743"
+       y1="401.98322"
+       x2="1014.2758"
+       y2="401.98322"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5"
+       id="linearGradient6"
+       x1="209.20743"
+       y1="401.98322"
+       x2="1014.2758"
+       y2="401.98322"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient35"
+       id="linearGradient36"
+       x1="368.66415"
+       y1="570.50464"
+       x2="368.66415"
+       y2="753.84424"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.17581686,-0.23166363,0.23952135,0.1643463,-190.43393,74.607845)" />
+    <linearGradient
+       id="linearGradient35"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#c243ab;stop-opacity:1;"
+         offset="0.12078153"
+         id="stop35" />
+      <stop
+         style="stop-color:#4ba6ff;stop-opacity:1;"
+         offset="1"
+         id="stop36" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26587369,0,0,0.26587369,15.266815,-11.719313)"
+       id="text3"
+       style="font-size:266.667px;font-family:'Fredoka One';-inkscape-font-specification:'Fredoka One, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);display:inline;fill:url(#linearGradient4);fill-rule:evenodd;stroke:url(#linearGradient6);stroke-width:15.1181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"><tspan
+         x="198.54102"
+         y="499.98342"
+         id="tspan1">Karma</tspan></text>
+    <path
+       id="path34"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient36);stroke-width:9.408;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+       d="m 23.076554,111.75984 1.897292,-10.53393 4.996116,14.5233 c -5.040506,-1.6385 -2.989029,-1.25434 -6.893408,-3.98937 z M 18.895329,83.546472 c -0.786882,0.985009 -1.49617,2.044675 -2.114791,3.17391 -4.948962,9.033873 -2.605301,19.805508 5.522748,25.382528 l -8.19653,5.29928 20.145692,-1.84719 C 44.515417,115.29104 53.53358,107.80197 55.503128,97.907372 57.472672,88.012769 51.806722,78.661848 42.151523,75.872519 33.703222,73.431857 24.403552,76.651448 18.895329,83.546472 Z"
+       sodipodi:nodetypes="ccccsscccsss"
+       inkscape:export-filename="logotipo10.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>

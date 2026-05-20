@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karma — Te ayudamos a devolver todo lo que te llega</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #c243ab;
+    --blue: #4ba6ff;
+    --green: #69e7aa;
+    --bg: #f7f5f2;
+    --bg2: #ede9e4;
+    --card: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.13);
+    --text: #1a1a1a;
+    --muted: #7a7068;
+    --shadow: rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2 {
+    font-family: 'Fredoka One', cursive;
+    letter-spacing: -0.5px;
+  }
+
+  h3, h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 60px;
+    background: rgba(247,245,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .btn-nav {
+    background: var(--green);
+    color: #0f0f0f;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    text-decoration: none;
+    box-shadow: 0 2px 12px rgba(105,231,170,0.3);
+  }
+
+  .btn-nav:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(105,231,170,0.45);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-blob {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(194,67,171,0.10) 0%, transparent 70%);
+    top: 15%; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .hero-blob2 {
+    position: absolute;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,166,255,0.08) 0%, transparent 70%);
+    bottom: 10%; right: 8%;
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(194,67,171,0.08);
+    border: 1px solid rgba(194,67,171,0.22);
+    color: var(--pink);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--pink);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.08;
+    max-width: 820px;
+    animation: fadeUp 0.6s 0.1s ease both;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .hero h1 .gradient-text {
+    background: linear-gradient(135deg, var(--pink) 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.15s ease both;
+    letter-spacing: 0.8px;
+  }
+
+  .hero p.hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 540px;
+    line-height: 1.75;
+    margin-bottom: 44px;
+    font-weight: 400;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: #0f0f0f;
+    border: none;
+    padding: 15px 32px;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(105,231,170,0.35);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(105,231,170,0.45);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: var(--text);
+    border: 1px solid var(--border2);
+    padding: 15px 32px;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(0,0,0,0.2);
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+
+  /* WPP MOCKUP */
+  .hero-visual {
+    margin-top: 72px;
+    max-width: 660px;
+    width: 100%;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .wpp-window {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.09), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  .wpp-header {
+    background: #f0ede8;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .wpp-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .wpp-group-name { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+  .wpp-members { font-size: 0.7rem; color: var(--muted); }
+
+  .wpp-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 200px;
+    background: #faf9f7;
+  }
+
+  .msg { display: flex; gap: 8px; max-width: 82%; }
+  .msg.right { align-self: flex-end; flex-direction: row-reverse; }
+
+  .msg-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: #e0dbd4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--muted);
+  }
+
+  .msg-bubble {
+    background: white;
+    padding: 8px 13px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.5;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  .msg.right .msg-bubble {
+    background: #dcf8c6;
+    border-radius: 12px 4px 12px 12px;
+  }
+
+  .karma-update {
+    align-self: center;
+    background: rgba(105,231,170,0.12);
+    border: 1px solid rgba(105,231,170,0.4);
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-size: 0.78rem;
+    color: #1a6642;
+    max-width: 92%;
+    text-align: left;
+  }
+
+  .karma-update strong { display: block; margin-bottom: 4px; font-size: 0.8rem; color: #157a4a; }
+  .karma-update ul { list-style: none; padding: 0; }
+  .karma-update ul li::before { content: "→ "; color: #2d9e64; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 60px;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 480px;
+    font-weight: 400;
+  }
+
+  /* STEPS */
+  .steps {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .step {
+    background: white;
+    padding: 36px 28px;
+    transition: background 0.2s;
+  }
+
+  .step:hover { background: #fdfcfb; }
+
+  .step-number {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.8rem;
+    color: rgba(194,67,171,0.13);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-icon { font-size: 1.5rem; margin-bottom: 12px; }
+
+  .step h3 {
+    font-size: 0.98rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .step p {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* FEATURES */
+  .features-section {
+    padding: 100px 60px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .features-inner { max-width: 1160px; margin: 0 auto; }
+
+  .features-grid {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .feature-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .feature-card:hover {
+    border-color: rgba(194,67,171,0.22);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px var(--shadow);
+  }
+
+  .feature-icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+  }
+
+  .feature-icon.pink { background: rgba(194,67,171,0.1); }
+  .feature-icon.blue { background: rgba(75,166,255,0.1); }
+  .feature-icon.green { background: rgba(105,231,170,0.15); }
+
+  .feature-card h3 { font-size: 0.97rem; font-weight: 800; margin-bottom: 8px; }
+  .feature-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; font-weight: 400; }
+
+  /* COMPARISON */
+  .comparison-table {
+    margin-top: 56px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .comparison-table table { width: 100%; border-collapse: collapse; }
+
+  .comparison-table th {
+    padding: 16px 22px;
+    text-align: left;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .comparison-table th.highlight { color: var(--pink); background: rgba(194,67,171,0.05); }
+
+  .comparison-table td {
+    padding: 13px 22px;
+    font-size: 0.87rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    background: white;
+    vertical-align: middle;
+  }
+
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table td.highlight { background: rgba(194,67,171,0.03); }
+  .comparison-table tr:hover td { background: #fdfcfb; }
+  .comparison-table tr:hover td.highlight { background: rgba(194,67,171,0.06); }
+
+  .check { color: #2db870; font-size: 1.05rem; }
+  .cross { color: #ccc; }
+  .partial { color: var(--blue); font-size: 0.8rem; font-weight: 600; }
+
+  /* PRICING */
+  .pricing-section {
+    padding: 100px 60px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pricing-inner { max-width: 1160px; margin: 0 auto; }
+
+  .pricing-grid {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .pricing-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 32px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+
+  .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px var(--shadow); }
+
+  .pricing-card.featured {
+    border-color: var(--pink);
+    border-width: 1.5px;
+  }
+
+  .pricing-card.featured::before {
+    content: 'Popular';
+    position: absolute;
+    top: -1px; left: 50%; transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--pink), var(--blue));
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 16px;
+    border-radius: 0 0 10px 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .plan-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .plan-price {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  .plan-price span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+
+  .plan-chats { font-size: 0.84rem; color: var(--muted); margin-bottom: 26px; }
+  .plan-divider { height: 1px; background: var(--border); margin-bottom: 22px; }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .plan-features li {
+    font-size: 0.86rem;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 400;
+  }
+
+  .plan-features li .check { font-size: 0.88rem; flex-shrink: 0; margin-top: 2px; }
+
+  .btn-plan {
+    width: 100%;
+    padding: 13px;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 1.5px solid var(--border2);
+    background: transparent;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+
+  .btn-plan:hover { background: var(--bg2); border-color: rgba(0,0,0,0.18); }
+
+  .btn-plan.primary {
+    background: var(--green);
+    color: #0f0f0f;
+    border: none;
+    box-shadow: 0 4px 16px rgba(105,231,170,0.3);
+  }
+
+  .btn-plan.primary:hover {
+    opacity: 0.88;
+    box-shadow: 0 8px 28px rgba(105,231,170,0.42);
+  }
+
+  /* FAQ */
+  .faq-list {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .faq-item { background: white; border-bottom: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 22px 32px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: background 0.2s;
+  }
+
+  .faq-question:hover { background: var(--bg); }
+
+  .faq-icon {
+    font-size: 1.2rem;
+    color: var(--muted);
+    transition: transform 0.25s, color 0.25s;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s;
+    padding: 0 32px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 22px; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--pink); }
+
+  /* CTA FINAL */
+  .cta-section {
+    padding: 120px 60px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(194,67,171,0.05), rgba(75,166,255,0.05));
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-iso {
+    width: 72px;
+    height: auto;
+    margin: 0 auto 28px;
+    display: block;
+    opacity: 0.9;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    max-width: 640px;
+    margin: 0 auto 16px;
+    color: var(--text);
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 440px;
+    margin: 0 auto 40px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 44px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: white;
+  }
+
+  .footer-logo img { height: 28px; width: auto; display: block; }
+
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy { font-size: 0.8rem; color: var(--muted); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    section { padding: 64px 20px; }
+    .features-section, .pricing-section, .cta-section { padding: 64px 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; padding: 36px 20px; }
+    .hero { padding: 110px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+   <img src = "./logos/logotipo.svg" alt="Karma Logo">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#comparacion">Comparación</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#pricing" class="btn-nav">Empezar ahora</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+
+  <div class="badge">
+    <span class="badge-dot"></span>
+    Agente de IA para WhatsApp
+  </div>
+
+  <h1>
+    Te ayudamos a<br>
+    <span class="gradient-text">devolver todo</span><br>
+    lo que te llega.
+  </h1>
+  <p class="hero-tagline">— karma —</p>
+  <p class="hero-desc">
+    Karma se suma a tus grupos de WhatsApp, escucha cada conversación con el cliente y convierte mensajes, audios y archivos en tareas accionables. Sin cambiar nada de cómo trabajan.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#pricing" class="btn-primary">Conectar Karma &nbsp;→</a>
+    <a href="#como-funciona" class="btn-secondary">Ver cómo funciona</a>
+  </div>
+
+  <div class="hero-visual">
+    <div class="wpp-window">
+      <div class="wpp-header">
+        <div class="wpp-avatar">K</div>
+        <div>
+          <div class="wpp-group-name">Agencia Bloom × MarcaXYZ</div>
+          <div class="wpp-members">Lucía, Martín, Diego, karma, +2</div>
+        </div>
+      </div>
+      <div class="wpp-body">
+        <div class="msg">
+          <div class="msg-avatar">C</div>
+          <div class="msg-bubble">Che necesito que el logo quede más chico en el banner, y el fondo blanco en vez de gris. Para mañana a las 9 🙏</div>
+        </div>
+        <div class="msg">
+          <div class="msg-avatar">C</div>
+          <div class="msg-bubble">Ah y el copy del botón cambia a "Comprar ahora"</div>
+        </div>
+        <div class="msg right">
+          <div class="msg-avatar">L</div>
+          <div class="msg-bubble">Dale, vemos 👍</div>
+        </div>
+        <div class="karma-update">
+          <strong>✦ karma detectó 3 cambios nuevos</strong>
+          <ul>
+            <li>Logo → reducir tamaño en banner</li>
+            <li>Fondo → blanco (era gris)</li>
+            <li>Copy botón → "Comprar ahora"</li>
+          </ul>
+          Asignado: Diseño · Estado: pendiente · Deadline: mañana 9 AM
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="como-funciona">
+  <div class="section-label">Cómo funciona</div>
+  <h2 class="section-title">Tres pasos.<br>Cero fricción.</h2>
+  <p class="section-sub">No reemplaza tu forma de trabajar. Se suma a ella.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-icon">📲</div>
+      <h3>Conectás Karma</h3>
+      <p>Escaneás un QR desde tu WhatsApp, como WhatsApp Web. Karma queda asociado a tu cuenta en segundos.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-icon">💬</div>
+      <h3>Elegís los grupos</h3>
+      <p>Seleccionás qué grupos (cliente + equipo) querés que Karma escuche. Según tu plan: 10, 20 o 50 chats.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-icon">✦</div>
+      <h3>Karma hace el trabajo</h3>
+      <p>Cada mensaje, audio o archivo con feedback se convierte en una tarea. Sin copiar, sin perder nada.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">04</div>
+      <div class="step-icon">📊</div>
+      <h3>Tu equipo lo ve todo</h3>
+      <p>Recibís un Google Sheet con los cambios pendientes, en proceso y aprobados de cada cliente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features-section" id="features">
+  <div class="features-inner">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Todo lo que tu agencia necesitaba.</h2>
+    <p class="section-sub">Diseñado para equipos creativos pequeños y freelancers.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon pink">🎙️</div>
+        <h3>Audios incluidos</h3>
+        <p>Karma transcribe y extrae tareas de los audios de WhatsApp. Ningún pedido se pierde aunque llegue hablado.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon blue">📎</div>
+        <h3>Archivos adjuntos</h3>
+        <p>Imágenes, PDFs y archivos quedan vinculados a la tarea correspondiente. Nada flotando en el chat.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon green">✅</div>
+        <h3>Estados claros</h3>
+        <p>Pendiente, en proceso, aprobado. Cada cambio tiene un estado visible para todo el equipo.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon pink">📋</div>
+        <h3>Google Sheets nativo</h3>
+        <p>Tu tablero vive en Google Sheets. Sin aprender herramientas nuevas. Sin migrar nada.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon blue">🔄</div>
+        <h3>Historial de versiones</h3>
+        <p>Sabés qué fue aprobado, qué cambió y cuándo. Sin buscar en el chat.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon green">👥</div>
+        <h3>Multi-grupo</h3>
+        <p>Cada cliente tiene su grupo. Karma los gestiona todos en paralelo, separados y ordenados.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<section id="comparacion">
+  <div class="section-label">Comparación</div>
+  <h2 class="section-title">Por qué Karma y no otra cosa.</h2>
+  <p class="section-sub">Las herramientas existentes no fueron diseñadas para la realidad de equipos chicos.</p>
+
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Funcionalidad</th>
+          <th class="highlight">✦ Karma</th>
+          <th>ClickUp / Asana</th>
+          <th>Filestage / Ziflow</th>
+          <th>Solo WhatsApp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vive dentro de WhatsApp</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>El cliente no necesita cambiar nada</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Extrae tareas de audios</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td>Convierte feedback en tareas</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="partial">Manual</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td>Historial de versiones</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td>Precio accesible para equipos chicos</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Setup en menos de 5 minutos</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PRICING -->
+<div class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple. Sin sorpresas.</h2>
+    <p class="section-sub">Pagás por los chats que querés gestionar. Nada más.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price">$15 <span>USD / mes</span></div>
+        <div class="plan-chats">Hasta 10 chats de clientes</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Karma en hasta 10 grupos de WhatsApp</li>
+          <li><span class="check">✓</span> Detección automática de feedback</li>
+          <li><span class="check">✓</span> Transcripción de audios</li>
+          <li><span class="check">✓</span> Google Sheet con tareas y estados</li>
+          <li><span class="check">✓</span> Archivos adjuntos vinculados</li>
+        </ul>
+        <button class="btn-plan" onclick="handleCTA()">Empezar con Basic</button>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="plan-name">Team</div>
+        <div class="plan-price">$25 <span>USD / mes</span></div>
+        <div class="plan-chats">Hasta 20 chats de clientes</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Todo lo de Basic</li>
+          <li><span class="check">✓</span> Karma en hasta 20 grupos</li>
+          <li><span class="check">✓</span> Historial de versiones aprobadas</li>
+          <li><span class="check">✓</span> Asignación de tareas por área</li>
+          <li><span class="check">✓</span> Soporte prioritario</li>
+        </ul>
+        <button class="btn-plan primary" onclick="handleCTA()">Empezar con Team</button>
+      </div>
+
+      <div class="pricing-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price">$50 <span>USD / mes</span></div>
+        <div class="plan-chats">Hasta 50 chats de clientes</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Todo lo de Team</li>
+          <li><span class="check">✓</span> Karma en hasta 50 grupos</li>
+          <li><span class="check">✓</span> Multi-agencia / múltiples cuentas</li>
+          <li><span class="check">✓</span> API access</li>
+          <li><span class="check">✓</span> Onboarding dedicado</li>
+        </ul>
+        <button class="btn-plan" onclick="handleCTA()">Empezar con Enterprise</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Preguntas frecuentes.</h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Cómo se conecta Karma a mi WhatsApp?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Al elegir tu plan, generamos un QR único. Lo escaneás desde tu WhatsApp (igual que WhatsApp Web) y Karma queda asociado a tu cuenta en menos de 2 minutos.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿El cliente tiene que instalar algo?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">No. El cliente sigue hablando por WhatsApp como siempre. Karma escucha desde tu lado sin que el cliente cambie absolutamente nada.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Dónde aparecen las tareas?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">En un Google Sheet configurado automáticamente con tu mail. Cada fila es un cambio solicitado, con su estado, responsable, multimedia adjunta y fecha.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Qué pasa con los audios?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Karma los transcribe automáticamente y extrae los pedidos de cambio. Si el cliente manda un audio diciendo "cambiá el fondo a blanco", eso se convierte en una tarea pendiente.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Qué significa "por chats"?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Cada "chat" es un grupo de WhatsApp que elegís monitorear. Si tenés 8 clientes y cada uno tiene su grupo, necesitás 8 chats. El plan Basic cubre hasta 10.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Puedo cambiar de plan?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Sí, podés subir o bajar en cualquier momento. El cambio aplica en el próximo ciclo de facturación.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-section">
+  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjE4OC41MjM1IgogICB6b29tQW5kUGFuPSJtYWduaWZ5IgogICB2aWV3Qm94PSIwIDAgMTQxLjM5MjYyIDE0My4wMjYwMiIKICAgaGVpZ2h0PSIxOTAuNzAxMzciCiAgIGlkPSJzdmczMyIKICAgaW5rc2NhcGU6ZXhwb3J0LWZpbGVuYW1lPSJLYXJtYV9zbWlseS5zdmciCiAgIGlua3NjYXBlOmV4cG9ydC14ZHBpPSI5NiIKICAgaW5rc2NhcGU6ZXhwb3J0LXlkcGk9Ijk2IgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjQuMiAoZjQzMjdmNCwgMjAyNS0wNS0xMykiCiAgIHNvZGlwb2RpOmRvY25hbWU9ImxvZ290aXBvMTEuc3ZnIgogICB2ZXJzaW9uPSIxLjEiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpbmtzY2FwZTp6b29tPSIwLjYxNDU4MzMzIgogICAgIGlua3NjYXBlOmN4PSI4NTUuMDUwODUiCiAgICAgaW5rc2NhcGU6Y3k9IjM3Ni42Nzc5NyIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iOTc0IgogICAgIGlua3NjYXBlOndpbmRvdy14PSItMTEiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii0xMSIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImcxNiIKICAgICBpZD0ibmFtZWR2aWV3MSIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiMwMDAwMDAiCiAgICAgYm9yZGVyb3BhY2l0eT0iMC4yNSIKICAgICBpbmtzY2FwZTpzaG93cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VjaGVja2VyYm9hcmQ9IjAiCiAgICAgaW5rc2NhcGU6ZGVza2NvbG9yPSIjZDFkMWQxIgogICAgIHNob3dncmlkPSJmYWxzZSI+CiAgICA8aW5rc2NhcGU6Z3JpZAogICAgICAgaWQ9ImdyaWQxIgogICAgICAgb3JpZ2lueD0iLTI1Ni41MDI4NyIKICAgICAgIG9yaWdpbnk9Ii00OTkuNjkyNTQiCiAgICAgICBzcGFjaW5neT0iMSIKICAgICAgIHNwYWNpbmd4PSIxIgogICAgICAgdW5pdHM9InB4IgogICAgICAgdmlzaWJsZT0iZmFsc2UiIC8+CiAgICA8aW5rc2NhcGU6cGFnZQogICAgICAgeD0iMCIKICAgICAgIHk9IjAiCiAgICAgICB3aWR0aD0iMTQxLjM5MjYyIgogICAgICAgaGVpZ2h0PSIxNDMuMDI2MDIiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSI+CiAgICA8bGluZWFyR3JhZGllbnQKICAgICAgIGlkPSJsaW5lYXJHcmFkaWVudDM1IgogICAgICAgaW5rc2NhcGU6Y29sbGVjdD0iYWx3YXlzIj4KICAgICAgPHN0b3AKICAgICAgICAgc3R5bGU9InN0b3AtY29sb3I6I2MyNDNhYjtzdG9wLW9wYWNpdHk6MTsiCiAgICAgICAgIG9mZnNldD0iMC4xMjA3ODE1MyIKICAgICAgICAgaWQ9InN0b3AzNSIgLz4KICAgICAgPHN0b3AKICAgICAgICAgc3R5bGU9InN0b3AtY29sb3I6IzRiYTZmZjtzdG9wLW9wYWNpdHk6MTsiCiAgICAgICAgIG9mZnNldD0iMSIKICAgICAgICAgaWQ9InN0b3AzNiIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQKICAgICAgIGlua3NjYXBlOmNvbGxlY3Q9ImFsd2F5cyIKICAgICAgIHhsaW5rOmhyZWY9IiNsaW5lYXJHcmFkaWVudDM1IgogICAgICAgaWQ9ImxpbmVhckdyYWRpZW50MzYiCiAgICAgICB4MT0iMzY4LjY2NDE1IgogICAgICAgeTE9IjU3MC41MDQ2NCIKICAgICAgIHgyPSIzNjguNjY0MTUiCiAgICAgICB5Mj0iNzUzLjg0NDI0IgogICAgICAgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiCiAgICAgICBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDAuNDk4Mzc4NTIsLTAuNjU2Njg0MzIsMC42Nzg5NTgxNywwLjQ2NTg2MzU1LC01NjguMzEyODgsMTAuMjI4NTM0KSIgLz4KICA8L2RlZnM+CiAgPHBhdGgKICAgICBpZD0icGF0aDM0IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOnVybCgjbGluZWFyR3JhZGllbnQzNik7c3Ryb2tlLXdpZHRoOjIyLjk4MjE7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtwYWludC1vcmRlcjpzdHJva2UgZmlsbCBtYXJrZXJzIgogICAgIGQ9Im0gMzYuOTEzODQ3LDExNS41NDEzMiA1LjM3ODE1LC0yOS44NTk5NDYgMTQuMTYyMjIsNDEuMTY4NDA2IGMgLTE0LjI4ODA1LC00LjY0NDU3IC04LjQ3Mjg0LC0zLjU1NTYgLTE5LjU0MDM3LC0xMS4zMDg0NiB6IE0gMjUuMDYxNTU3LDM1LjU2NjM3NCBjIC0yLjIzMDUzLDIuNzkyMTUgLTQuMjQxMTEsNS43OTU5MyAtNS45OTQ2OCw4Ljk5NjkxIC0xNC4wMjg1NDk5LDI1LjYwNzgzIC03LjM4NTEsNTYuMTQxNjU2IDE1LjY1NTAzLDcxLjk1MDUxNiBsIC0yMy4yMzQyNSwxNS4wMjE1OSA1Ny4xMDU4OSwtNS4yMzYxMiBjIDI5LjA5MTg4LC0wLjc0ODIzIDU0LjY1NTE3MywtMjEuOTc3MTEgNjAuMjM4MTQzLC01MC4wMjQ4MjYgNS41ODI5NiwtMjguMDQ3NyAtMTAuNDc4LC01NC41NTQyNSAtMzcuODQ3MDYzLC02Mi40NjEwMSAtMjMuOTQ3OTQsLTYuOTE4NDEwMyAtNTAuMzA5MjEsMi4yMDc5OSAtNjUuOTIzMDcsMjEuNzUyOTQgeiIKICAgICBzb2RpcG9kaTpub2RldHlwZXM9ImNjY2Nzc2NjY3NzcyIKICAgICBpbmtzY2FwZTpleHBvcnQtZmlsZW5hbWU9ImxvZ290aXBvMTAuc3ZnIgogICAgIGlua3NjYXBlOmV4cG9ydC14ZHBpPSI5NiIKICAgICBpbmtzY2FwZTpleHBvcnQteWRwaT0iOTYiIC8+Cjwvc3ZnPgo=" alt="Karma" class="cta-iso" />
+  <h2>Tu feedback<br><span style="background: linear-gradient(135deg, var(--pink), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">nunca más se pierde.</span></h2>
+  <p>Conectá Karma a tus grupos de WhatsApp hoy y empezá a convertir el caos en tareas claras.</p>
+  <a href="#" class="btn-primary" onclick="handleCTA(); return false;">Conectar Karma ahora &nbsp;→</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+   <img src = "./logos/logotipo.svg" alt="Karma Logo">  
+  </div>
+  <ul class="footer-links">
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#">Privacidad</a></li>
+    <li><a href="#">Términos</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Karma. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function handleCTA() {
+    alert('¡Próximamente! Conectá Karma a tu WhatsApp.');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.feature-card, .step, .pricing-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
